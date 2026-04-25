@@ -7,7 +7,8 @@ import argparse
 from dashboard import app as dashboard_app
 
 def run_dashboard():
-    dashboard_app.app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    dashboard_app.app.run(host='0.0.0.0', port=port, debug=True)
 
 def main():
     parser = argparse.ArgumentParser(description='AI Weather Energy Project')
@@ -17,7 +18,8 @@ def main():
     if args.dashboard:
         run_dashboard()
     else:
-        print('Run with --dashboard to start the web dashboard')
+        # Default: run dashboard
+        run_dashboard()
 
 if __name__ == '__main__':
     main()
